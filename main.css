@@ -1,0 +1,26 @@
+body {
+  background-color: #bff8ff;
+}
+
+.Banner{
+	display:flex;
+	flex:1;
+	justify-content: center;
+	font-family: 'Rochester', cursive;
+	font-size:30px;
+}
+
+.Content{
+	padding: 20px;
+	display:flex;
+	flex:1;
+	justify-content:center;
+	
+}
+
+.MiddleCol{
+	background-color:white;
+	flex-basis: 30%;
+	border-radius:20px;
+	padding:10px;
+}
