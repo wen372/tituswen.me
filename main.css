@@ -6,7 +6,7 @@ body {
 	display:flex;
 	flex:1;
 	justify-content: center;
-	font-family: 'Rochester', cursive;
+	font-family: 'Source Serif Pro', serif;
 	font-size:30px;
 }
 
@@ -20,7 +20,7 @@ body {
 
 .MiddleCol{
 	background-color:white;
-	flex-basis: 30%;
+	flex-basis: 70%;
 	border-radius:20px;
 	padding:10px;
 }
