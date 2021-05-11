@@ -1,0 +1,134 @@
+body {
+    background:black;
+    color: #fff;
+    font-family: arial;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+header {
+    text-align: center;
+    padding-top: 20px;
+}
+
+header img{
+    width: auto;
+    height: 150px;
+}
+
+nav {
+    height: 20px;
+    font-size: 90%;
+    border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(255, 255, 255, .10);
+    text-align: center;
+}
+
+span {
+    display: inline;
+    margin: 0 0.1em;
+    padding: 10px;
+    padding-top: 2px;
+}
+
+#navContainer {
+    padding-bottom: 10px;
+}
+
+#indexWrapper {
+    max-width: 700px;
+    margin: 2em auto;
+}
+
+#indexWrapper img {
+    vertical-align: inherit;
+}
+
+h2 {
+    margin: 0;
+    font-size: 90%;
+    border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(255, 255, 255, .10);
+    padding-left: 5px;
+    color: #fff;
+}
+
+#divStandard {
+    font-size: 80%;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-top: none;
+    padding: 0.5em;
+    
+}
+
+#divStandard a {
+    font-weight: bold;
+}
+
+
+
+
+ol {
+    list-style: square;
+    padding-left: 20px;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+ol a{
+    color: white;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+}
+
+table a {
+    color: white;
+}
+
+footer {
+    text-align: center;
+    font-size: small !important;
+}
+
+
+project {
+  align-self: center;
+}  
+
+
+#phaser{
+    
+    width: 800px;
+    height: 600px;
+    /*
+    border: 1px solid #c3c3c3;
+    */
+
+    padding-top: 100px;
+    margin: auto;
+    
+   
+}
+
+#instructions{
+    margin-top: 50px;
+    line-height: 10px;
+    width: 800px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
