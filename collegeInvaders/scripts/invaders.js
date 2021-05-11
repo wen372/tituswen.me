@@ -7,7 +7,7 @@ function preload() {
     //game.load.spritesheet('invader', 'assets/final/trustee.png', 32, 32);
     game.load.image('ship', 'assets/NewAssets/Images/Student_Sprite.png' , 28 ,28) ;
     game.load.spritesheet('kaboom', 'assets/NewAssets/explode.png', 128, 128);
-    game.load.image('starfield', '/assets/NewAssets/Images/backgroundpixel2.png');
+    game.load.image('starfield', 'assets/final/background.png');
     game.load.image('wall', 'assets/final/wall.png');
     game.load.image('heart', 'assets/final/Life.png');
     
