@@ -9,8 +9,9 @@ function preload() {
     game.load.spritesheet('kaboom', 'assets/NewAssets/explode.png', 128, 128);
     game.load.image('starfield', 'assets/final/background.png');
     game.load.image('wall', 'assets/final/wall.png');
+    game.load.image('wall2', 'assets/final/wall2.png');
     game.load.image('heart', 'assets/final/Life.png');
-    
+
     game.load.spritesheet('invader', 'assets/final/NewPiskelJim.png', 128, 128);
     game.load.spritesheet('invader2', 'assets/final/NewPiskel.png', 128, 128);
     game.load.spritesheet('invader3', 'assets/final/NewPiskelBald.png', 128, 128);
@@ -59,7 +60,7 @@ var gameOver;
 
 function create() {
 
-    
+
 
 
 
@@ -74,7 +75,7 @@ function create() {
 
     createBullets();
     createHero();
-    
+
 
     createAliens();
     addEnemyMovement()
@@ -117,7 +118,7 @@ function create() {
 }
 
 function test(){
-    
+
     if(volumeOn){
         explodeSound.volume = 0;
         playerHurtSound.volume = 0;
@@ -140,68 +141,68 @@ function update() {
     //game.scale.pageAlignHorizontally = true;
     //game.scale.pageAlignVertically = true;
     game.scale.refresh();
-  
+
       //  Scroll the background
       //starfield.tilePosition.y += 2;
-  
+
       if (player.alive)
       {
           //  Reset the player, then check for movement keys
           player.body.velocity.setTo(0, 0);
-  
+
           if ((cursors.left.isDown || aKey.isDown) && player.body.x > 2)
           {
               player.body.velocity.x = -200;
           }
           else if ((cursors.right.isDown || dKey.isDown) && player.body.x <765)
           {
-              player.body.velocity.x = 200;     
+              player.body.velocity.x = 200;
           }
-  
+
           //  Firing?
           if (fireButton.isDown)
           {
               fireBullet();
           }
-  
+
           if (game.time.now > firingTimer)
           {
               enemyFires();
           }
-  
+
           //  Run collision
           game.physics.arcade.overlap(bullets, aliens, collisionHandler, null, this);
           game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
           game.physics.arcade.overlap(bullets, base, collisionWallPlayer, null, this);
           game.physics.arcade.overlap(enemyBullets, base, collisionWallEnemy, null, this);
       }
-  
+
   }
-  
+
   function render() {
 
-  
+
       //used to see hitbox of player
       //game.debug.body(player);
-  
+
       //bullets.forEach(game.debug.body,game.debug,"#dd00dd",false);
       //base.forEach(game.debug.body,game.debug,"#dd00dd",false);
       //aliens.forEach(game.debug.body,game.debug,"#dd00dd",false);
       //base.forEach(game.debug.body,game.debug,"#dd00dd",false);
-  
+
   }
-  
+
 
 
 function createAliens () {
-    
+
     //  The baddies!
     aliens = game.add.group();
     aliens.enableBody = true;
     aliens.physicsBodyType = Phaser.Physics.ARCADE;
 
     //for (var y = 0; y < 4; y++)
-   //{   
+   //{
         /*
         for (var x = 0; x < 10; x++)
         {
@@ -213,9 +214,9 @@ function createAliens () {
             alien.body.setSize(30,40,48,40);
         }
         */
-        
 
-        
+
+
 
         for (var x = 0; x < 10; x++)
         {
@@ -276,7 +277,7 @@ function createWalls (){
     for(var x=1; x< 5; x++){
         var  wall = base.create(160*x, 500, 'wall');
         wall.anchor.setTo(0.5, 0.5);
-        //resizing image 
+        //resizing image
         wall.scale.setTo(.8);
         //changing hitbox to match resized image
         wall.body.setSize(88,45,20,40);
@@ -294,10 +295,10 @@ function createWalls (){
         var  wall = base.create(160*x+y, 500+z, 'wall');
         wall.health = 100;
         wall.anchor.setTo(0.5, 0.5);
-        //resizing image 
+        //resizing image
         wall.scale.setTo(.25);
         //changing hitbox to match resized image
-        wall.body.setSize(80,50,25,40);
+        wall.body.setSize(75,50,28,40);
    }}}
 }
 
@@ -321,13 +322,15 @@ function descend() {
 //colision function for when player bullet hits a wall
 function collisionWallPlayer(bullet, base){
     bullet.kill();
-    
+
 }
 
 //colision function for when enemy bullet hits a wall
 function collisionWallEnemy(enemyBullet, base){
+    if(base.health >= 100){
+        base.loadTexture('wall2', 0, false);
+    }
     enemyBullet.kill();
-    //base.kill();
     base.damage(50);
 }
 
@@ -395,15 +398,15 @@ function enemyHitsPlayer (player,bullet) {
         player.kill();
         enemyBullets.callAll('kill');
         bullets.callAll('kill');
-        
 
- 
+
+
         tween.pause();
         //the "click to restart" handler
         stateText.text=" GAME OVER! \n Click to restart";
         stateText.visible = true;
         game.input.onTap.addOnce(restart,this);
-        
+
     }
 
 }
@@ -517,10 +520,10 @@ function createBullets(){
 
 }
 
-//creating player 
+//creating player
 function createHero(){
-    //  The hero! 
-    player = game.add.sprite(400, 560, 'ship'); 
+    //  The hero!
+    player = game.add.sprite(400, 560, 'ship');
     //changes size of player
     player.scale.setTo(.15,.15);
     player.anchor.setTo(0.5, 0.5);
@@ -544,7 +547,7 @@ function createUI(){
     stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' });
     stateText.anchor.setTo(0.5, 0.5);
     stateText.visible = false;
-    
+
 
     for (var i = 0; i < 3; i++)
     {
@@ -553,7 +556,7 @@ function createUI(){
         heart.anchor.setTo(0.5, 0.5);
         //heart.alpha = 0.8;
     }
-    
+
 
 }
 
@@ -570,7 +573,7 @@ function addEnemyMovement(){
         //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
         tween = game.add.tween(aliens).to( { x: 200 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
         //var tween = game.add.tween(aliens).to( { x: 200 }, 200, Phaser.Easing.Linear.None, true, 0, 1000, true);
-    
+
         //  When the tween loops it calls descend
         tween.onRepeat.add(descend, this);
 }
