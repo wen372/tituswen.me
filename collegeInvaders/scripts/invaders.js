@@ -7,7 +7,7 @@ function preload() {
     //game.load.spritesheet('invader', 'assets/final/trustee.png', 32, 32);
     game.load.image('ship', 'assets/NewAssets/Images/Student_Sprite.png' , 28 ,28) ;
     game.load.spritesheet('kaboom', 'assets/NewAssets/explode.png', 128, 128);
-    game.load.image('starfield', 'assets/final/background.png');
+    game.load.image('starfield', '/assets/final/background.png');
     game.load.image('wall', 'assets/final/wall.png');
     game.load.image('heart', 'assets/final/Life.png');
     
@@ -187,6 +187,7 @@ function update() {
       //bullets.forEach(game.debug.body,game.debug,"#dd00dd",false);
       //base.forEach(game.debug.body,game.debug,"#dd00dd",false);
       //aliens.forEach(game.debug.body,game.debug,"#dd00dd",false);
+      base.forEach(game.debug.body,game.debug,"#dd00dd",false);
   
   }
   
@@ -266,7 +267,7 @@ function createAliens () {
 
 
 }
-
+/*
 // create walls
 function createWalls (){
     base = game.add.group();
@@ -281,6 +282,25 @@ function createWalls (){
         wall.body.setSize(88,45,20,40);
    }
 }
+*/
+// create walls
+function createWalls (){
+    base = game.add.group();
+    base.enableBody = true;
+    base.physicsBodyType = Phaser.Physics.ARCADE;
+    for(var x=1; x< 5; x++){
+    for(var y=-20; y < 41; y+=20){
+    for(var z =-20;z < 1; z+=20){
+        var  wall = base.create(160*x+y, 500+z, 'wall');
+        wall.health = 100;
+        wall.anchor.setTo(0.5, 0.5);
+        //resizing image 
+        wall.scale.setTo(.25);
+        //changing hitbox to match resized image
+        wall.body.setSize(80,50,25,40);
+   }}}
+}
+
 
 function setupInvader (invader) {
 
@@ -301,11 +321,14 @@ function descend() {
 //colision function for when player bullet hits a wall
 function collisionWallPlayer(bullet, base){
     bullet.kill();
+    
 }
 
 //colision function for when enemy bullet hits a wall
 function collisionWallEnemy(enemyBullet, base){
     enemyBullet.kill();
+    //base.kill();
+    base.damage(50);
 }
 
 function collisionHandler (bullet, alien) {
@@ -455,6 +478,8 @@ function restart () {
     aliens.x = 60;
     aliens.y = 70;
 
+    //resets walls
+    base.callAll('revive');
 
     //revives the player
     player.revive();
